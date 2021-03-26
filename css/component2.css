@@ -3,7 +3,7 @@
 	position: relative;
 	width: 820px;
 	margin: 0 auto;
-	-webkit-perspective: 1800px;
+	-webkit-perspective: 600px;
 	-moz-perspective: 2000px;
 	perspective: 2000px;
 	-webkit-perspective-origin: 50% 70%;
@@ -64,7 +64,7 @@
 
 .bk-list li .bk-book {
 	cursor: pointer;
-	position: absolute;
+	position: relative;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -148,7 +148,7 @@
 	transform: translate3d(0,0,32px);
 }
 .bk-list li:nth-child(5) .bk-front {
-	-webkit-transform: translate3d(0,0,25px);
+	-webkit-transform: translate3d(0,0,75px);
 	-moz-transform: translate3d(0,0,25px);
 	transform: translate3d(0,0,25px);
 }
@@ -166,7 +166,7 @@
 .bk-list li .bk-front > div {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
-	backface-visibility: hidden;
+	backface-visibility: visible;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
