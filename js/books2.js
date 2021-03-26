@@ -8,7 +8,7 @@ var Books = (function() {
 			'transition' : 'transitionend'
 		}, 
 		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-		$books = $( '#back-list > li > div.back-book' ), booksCount = $books.length, currentbook = -1; 
+		$books = $( '#bk-list > li > div.bk-book' ), booksCount = $books.length, currentbook = -1; 
 	
 	function init() {
 
@@ -17,8 +17,8 @@ var Books = (function() {
 			var $book = $( this ),
 				$other = $books.not( $book ),
 				$parent = $book.parent(),
-				$page = $book.children( 'div.back-page' ),
-				$content = $page.children( 'div.back-content' ), current = 0;
+				$page = $book.children( 'div.bk-page' ),
+				$content = $page.children( 'div.bk-content' ), current = 0;
 
 			if( i < booksCount / 2 ) {
 				$parent.css( 'z-index', i ).data( 'stackval', i );
@@ -34,35 +34,35 @@ var Books = (function() {
 				}
 				
 				if( $book.data( 'opened' ) ) {
-					$book.data( 'opened', false ).removeClass( 'back-viewinside' ).on( transEndEventName, function() {
-						$( this ).off( transEndEventName ).removeClass( 'back-outside' );
+					$book.data( 'opened', false ).removeClass( 'bk-viewinside' ).on( transEndEventName, function() {
+						$( this ).off( transEndEventName ).removeClass( 'bk-outside' );
 						$parent.css( 'z-index', $parent.data( 'stackval' ) );
 						currentbook = -1;
 					} );
 				}
 				else {
-					$book.data( 'opened', true ).addClass( 'back-outside' ).on( transEndEventName, function() {
-						$( this ).off( transEndEventName ).addClass( 'back-viewinside' );
+					$book.data( 'opened', true ).addClass( 'bk-outside' ).on( transEndEventName, function() {
+						$( this ).off( transEndEventName ).addClass( 'bk-viewinside' );
 						$parent.css( 'z-index', booksCount );
 						currentbook = $parent.index();
 					} );
 					current = 0;
-					$content.removeClass( 'back-content-current' ).eq( current ).addClass( 'back-content-current' );
+					$content.removeClass( 'bk-content-current' ).eq( current ).addClass( 'bk-content-current' );
 				}
 
 			} );
 
 			if( $content.length > 1 ) {
 
-				var $navPrev = $( '<span class="back-page-prev">&lt;</span>' ),
-					$navNext = $( '<span class="back-page-next">&gt;</span>' );
+				var $navPrev = $( '<span class="bk-page-prev">&lt;</span>' ),
+					$navNext = $( '<span class="bk-page-next">&gt;</span>' );
 				
 				$page.append( $( '<nav></nav>' ).append( $navPrev, $navNext ) );
 
 				$navPrev.on( 'click', function() {
 					if( current > 0 ) {
 						--current;
-						$content.removeClass( 'back-content-current' ).eq( current ).addClass( 'back-content-current' );
+						$content.removeClass( 'bk-content-current' ).eq( current ).addClass( 'bk-content-current' );
 					}
 					return false;
 				} );
@@ -70,7 +70,7 @@ var Books = (function() {
 				$navNext.on( 'click', function() {
 					if( current < $content.length - 1 ) {
 						++current;
-						$content.removeClass( 'back-content-current' ).eq( current ).addClass( 'back-content-current' );
+						$content.removeClass( 'bk-content-current' ).eq( current ).addClass( 'bk-content-current' );
 					}
 					return false;
 				} );
@@ -86,8 +86,8 @@ var Books = (function() {
 		var $book = $books.eq( currentbook ),
 			$parent = $book.parent();
 		
-		$book.data( 'opened', false ).removeClass( 'back-viewinside' ).on( transEndEventName, function(e) {
-			$( this ).off( transEndEventName ).removeClass( 'back-outside' );
+		$book.data( 'opened', false ).removeClass( 'bk-viewinside' ).on( transEndEventName, function(e) {
+			$( this ).off( transEndEventName ).removeClass( 'bk-outside' );
 			$parent.css( 'z-index', $parent.data( 'stackval' ) );
 		} );
 
